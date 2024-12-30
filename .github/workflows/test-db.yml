@@ -44,3 +44,13 @@ jobs:
               JDBC_DATABASE_PASSWORD: password12_3
             run: |
               java -jar Sem_4/out/artifacts/Sem_4_jar/Sem_4.jar
+
+          - name: Check if Course exists in DB
+            run: |
+              # Используем psql для выполнения SQL-запроса и проверки наличия данных
+              PGPASSWORD=password12_3 psql -U root -d schoolDB -c "SELECT * FROM courses WHERE title='Data Science';"
+        
+          - name: Check DB after operations
+            run: |
+              # Проверка, что запись была удалена
+              PGPASSWORD=password12_3 psql -U root -d schoolDB -c "SELECT * FROM courses;"
