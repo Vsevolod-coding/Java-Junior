@@ -18,7 +18,6 @@ public class Program {
             session.save(course);
             System.out.println("Obj course saved!");
 
-
             Course retrievedCourse = session.get(Course.class, course.getId());
             System.out.println("Obj course retrieved!");
             System.out.println("Retrieved course obj: " + retrievedCourse);
@@ -30,7 +29,6 @@ public class Program {
 
             session.delete(retrievedCourse);
             System.out.println("Obj course deleted!");
-
 
             session.getTransaction().commit();
 
