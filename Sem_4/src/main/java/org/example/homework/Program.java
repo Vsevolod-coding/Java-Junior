@@ -30,6 +30,7 @@ public class Program {
             session.delete(retrievedCourse);
             System.out.println("Obj course deleted!");
 
+
             session.getTransaction().commit();
 
         } catch (Exception e) {
