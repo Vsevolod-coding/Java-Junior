@@ -40,7 +40,7 @@ jobs:
             - name: Build the project
               working-directory: Sem_4
               run: |
-                  ./Task3/mvnw install
+                  ./Sem_4/mvnw install
 
             - name: Run the application
               working-directory: Sem_4
