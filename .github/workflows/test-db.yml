@@ -45,12 +45,19 @@ jobs:
             run: |
               java -jar Sem_4/out/artifacts/Sem_4_jar/Sem_4.jar
 
+          - name: Wait for PostgreSQL to be ready
+              run: |
+                until PGPASSWORD=password12_3 psql -U root -h 127.0.0.1 -d schoolDB -c "SELECT 1" > /dev/null 2>&1; do
+                  echo "Waiting for PostgreSQL to be ready..."
+                  sleep 10
+                done
+
           - name: Check if Course exists in DB
-            run: |
-              # Используем psql для выполнения SQL-запроса и проверки наличия данных
-              PGPASSWORD=password12_3 psql -U root -d schoolDB -c "SELECT * FROM courses WHERE title='Data Science';"
-        
-          - name: Check DB after operations
-            run: |
-              # Проверка, что запись была удалена
-              PGPASSWORD=password12_3 psql -U root -d schoolDB -c "SELECT * FROM courses;"
+              run: |
+                echo "Checking if the course exists in the database..."
+                PGPASSWORD=password12_3 psql -U root -h 127.0.0.1 -d schoolDB -c "SELECT * FROM courses WHERE title='Data Science';"
+
+           - name: Check DB after operations
+              run: |
+                echo "Checking the database after operations..."
+                PGPASSWORD=password12_3 psql -U root -h 127.0.0.1 -d schoolDB -c "SELECT * FROM courses;"
