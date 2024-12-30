@@ -28,25 +28,19 @@ jobs:
                     --health-timeout=5s
                     --health-retries=5
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
-
-            - name: Set up JDK
-              uses: actions/setup-java@v3
-              with:
-                  java-version: 22
-                  distribution: 'temurin'
-
-            - name: Build the project
-              working-directory: Sem_4
-              run: |
-                  ./Sem_4/mvnw install
-
-            - name: Run the application
-              working-directory: Sem_4
-              env:
-                  JDBC_DATABASE_URL: jdbc:postgresql://127.0.0.1:5432/schoolDB
-                  JDBC_DATABASE_USERNAME: root
-                  JDBC_DATABASE_PASSWORD: password12_3
-              run: |
-                  java -cp target/your-application.jar org.example.homework.Program
+          - name: Checkout repository
+            uses: actions/checkout@v3
+    
+          - name: Set up JDK
+            uses: actions/setup-java@v3
+            with:
+              java-version: 17
+              distribution: 'temurin'
+    
+          - name: Run the application
+            env:
+              JDBC_DATABASE_URL: jdbc:postgresql://127.0.0.1:5432/schoolDB
+              JDBC_DATABASE_USERNAME: root
+              JDBC_DATABASE_PASSWORD: password12_3
+            run: |
+              java -jar Sem_4/out/artifacts/Sem_4_jar/Sem_4.jar
