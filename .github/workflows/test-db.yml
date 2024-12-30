@@ -46,14 +46,14 @@ jobs:
               java -jar Sem_4/out/artifacts/Sem_4_jar/Sem_4.jar
 
           - name: Wait for PostgreSQL to be ready
-              run: |
+            run: |
                 until PGPASSWORD=password12_3 psql -U root -h 127.0.0.1 -d schoolDB -c "SELECT 1" > /dev/null 2>&1; do
                   echo "Waiting for PostgreSQL to be ready..."
                   sleep 10
                 done
 
           - name: Check if Course exists in DB
-              run: |
+            run: |
                 echo "Checking if the course exists in the database..."
                 PGPASSWORD=password12_3 psql -U root -h 127.0.0.1 -d schoolDB -c "SELECT * FROM courses WHERE title='Data Science';"
 
